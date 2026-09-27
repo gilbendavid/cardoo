@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Cardoo</title>
+  <rect width="64" height="64" rx="15" fill="#e31d2b"/>
+  <path d="M45.5 19.7a19 19 0 1 0 0 24.6l-7.4-5.5a9.8 9.8 0 1 1 0-13.6z" fill="#fff"/>
+  <path d="M13 18.5c10.5-8.2 25.2-10.2 38.1-5.4" fill="none" stroke="#202224" stroke-linecap="round" stroke-width="3.6"/>
+</svg>
