@@ -345,28 +345,41 @@
               </fieldset>
               <fieldset class="filter-group payment-filter">
                 <legend class="filter-label">החזר חודשי משוער</legend>
-                <div class="range-labels">
-                  <label for="payment-min">מ־ <span>₪</span></label
-                  ><label for="payment-max">עד <span>₪</span></label>
-                </div>
-                <div class="range-inputs">
+                <div class="payment-range-control" id="payment-range-control">
+                  <div class="payment-range-track" aria-hidden="true"></div>
                   <input
                     id="payment-min"
-                    type="number"
-                    min="0"
+                    type="range"
+                    min="890"
+                    max="5790"
                     step="100"
-                    inputmode="numeric"
-                    aria-label="החזר חודשי מינימלי"
-                  /><input
+                    value="890"
+                    aria-label="החזר חודשי מינימלי: 890 שקלים בחודש"
+                    aria-valuenow="890"
+                    aria-valuetext="890 שקלים בחודש"
+                  />
+                  <input
                     id="payment-max"
-                    type="number"
-                    min="0"
+                    type="range"
+                    min="890"
+                    max="5790"
                     step="100"
-                    inputmode="numeric"
-                    aria-label="החזר חודשי מקסימלי"
+                    value="5790"
+                    aria-label="החזר חודשי מקסימלי: 5,790 שקלים בחודש"
+                    aria-valuenow="5790"
+                    aria-valuetext="5,790 שקלים בחודש"
                   />
                 </div>
-                <div class="range-visual" aria-hidden="true"><span></span></div>
+                <div class="payment-range-values" aria-live="polite" aria-atomic="true">
+                  <div class="payment-range-value">
+                    <output id="payment-min-value" for="payment-min">890</output>
+                    <span aria-hidden="true">₪</span>
+                  </div>
+                  <div class="payment-range-value">
+                    <output id="payment-max-value" for="payment-max">5790</output>
+                    <span aria-hidden="true">₪</span>
+                  </div>
+                </div>
               </fieldset>
               <button class="clear-filters" type="button" id="clear-filters">
                 ניקוי כל הסינונים <span aria-hidden="true">↺</span>

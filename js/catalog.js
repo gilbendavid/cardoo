@@ -8,6 +8,9 @@
   const searchInput = document.querySelector("#brand-search");
   const minInput = document.querySelector("#payment-min");
   const maxInput = document.querySelector("#payment-max");
+  const minValue = document.querySelector("#payment-min-value");
+  const maxValue = document.querySelector("#payment-max-value");
+  const paymentTrack = document.querySelector("#payment-range-control .payment-range-track");
   const sortSelect = document.querySelector("#sort-cars");
   const clearButton = document.querySelector("#clear-filters");
   const mobileCount = document.querySelector("#mobile-filter-count");
@@ -15,6 +18,42 @@
 
   const formatPrice = (price) => new Intl.NumberFormat("he-IL").format(price);
   const normalize = (value) => String(value || "").trim().toLocaleLowerCase("he-IL");
+
+  function syncPaymentControls(changedInput) {
+    let min = Number(minInput.value);
+    let max = Number(maxInput.value);
+    if (min > max) {
+      if (changedInput === minInput) max = min;
+      else min = max;
+    }
+
+    minInput.value = String(min);
+    maxInput.value = String(max);
+    const minText = String(min);
+    const maxText = String(max);
+    minValue.value = minText;
+    maxValue.value = maxText;
+    minValue.textContent = minText;
+    maxValue.textContent = maxText;
+
+    for (const [input, value, label] of [
+      [minInput, min, "מינימלי"],
+      [maxInput, max, "מקסימלי"],
+    ]) {
+      input.setAttribute("aria-valuemin", input.min);
+      input.setAttribute("aria-valuemax", input.max);
+      input.setAttribute("aria-valuenow", String(value));
+      input.setAttribute("aria-valuetext", `${formatPrice(value)} שקלים בחודש`);
+      input.setAttribute("aria-label", `החזר חודשי ${label}: ${formatPrice(value)} שקלים בחודש`);
+    }
+
+    const baseMin = Number(minInput.min);
+    const valueRange = Number(maxInput.max) - baseMin;
+    const start = (1 - (max - baseMin) / valueRange) * 100;
+    const end = (1 - (min - baseMin) / valueRange) * 100;
+    paymentTrack.style.setProperty("--range-start", `${start}%`);
+    paymentTrack.style.setProperty("--range-end", `${end}%`);
+  }
 
   function getSelectedCategories() {
     return [...categoriesRoot.querySelectorAll("input:checked")].map((input) => input.value);
@@ -85,7 +124,8 @@
   }
 
   function updateMobileFilterCount() {
-    const count = getSelectedCategories().length + (searchInput.value.trim() ? 1 : 0) + (minInput.value ? 1 : 0) + (maxInput.value ? 1 : 0);
+    const paymentFiltered = Number(minInput.value) > Number(minInput.min) || Number(maxInput.value) < Number(maxInput.max);
+    const count = getSelectedCategories().length + (searchInput.value.trim() ? 1 : 0) + (paymentFiltered ? 1 : 0);
     mobileCount.textContent = count ? String(count) : "";
   }
 
@@ -101,19 +141,28 @@
 
   function clearFilters() {
     searchInput.value = "";
-    minInput.value = "";
-    maxInput.value = "";
+    minInput.value = minInput.min;
+    maxInput.value = maxInput.max;
+    syncPaymentControls();
     categoriesRoot.querySelectorAll("input").forEach((input) => { input.checked = false; });
     sortSelect.value = "recommended";
     render();
   }
 
-  [searchInput, minInput, maxInput, sortSelect].forEach((input) => {
-    input.addEventListener(input === sortSelect ? "change" : "input", render);
+  searchInput.addEventListener("input", render);
+  sortSelect.addEventListener("change", render);
+  minInput.addEventListener("input", () => {
+    syncPaymentControls(minInput);
+    render();
+  });
+  maxInput.addEventListener("input", () => {
+    syncPaymentControls(maxInput);
+    render();
   });
   clearButton.addEventListener("click", clearFilters);
   document.querySelector("#empty-clear").addEventListener("click", clearFilters);
 
+  syncPaymentControls();
   if (cars.length) {
     makeCategoryFilters();
     render();
