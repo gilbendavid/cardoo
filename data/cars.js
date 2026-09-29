@@ -136,7 +136,7 @@ window.CardooCars = [
     "categories": [
       "מרווחת","SUV","היברידי"
     ],
-    "image": "https://www.google.com/imgres?q=%D7%A7%D7%99%D7%94%20%D7%A0%D7%99%D7%A8%D7%95%20%D7%94%D7%99%D7%99%D7%91%D7%A8%D7%99%D7%93&imgurl=https%3A%2F%2Fkia-israel.co.il%2Fwp-content%2Fuploads%2F2023%2F02%2F49727-ak_niro_site_photo-2_1000x1000.jpg&imgrefurl=https%3A%2F%2Fkia-israel.co.il%2F%25D7%25A8%25D7%259B%25D7%2591%2F%25D7%25A0%25D7%2599%25D7%25A8%25D7%2595-%25D7%2594%25D7%2599%25D7%2599%25D7%2591%25D7%25A8%25D7%2599%25D7%2593&docid=iEj_4wUbGexqXM&tbnid=tN88gCgmqBYJbM&vet=12ahUKEwjtvprcsZSXAxUFVPEDHWfLHn8QnPAOegQIOxAA..i&w=1000&h=1000&hcb=2&ved=2ahUKEwjtvprcsZSXAxUFVPEDHWfLHn8QnPAOegQIOxAA",
+    "image": "https://kia-israel.co.il/wp-content/uploads/2026/07/ex_image_4_750X500.jpg",
     "imageAlt": "קיה נירו היברידי",
     "monthlyPayment": 1878,
     "year": 2026,
