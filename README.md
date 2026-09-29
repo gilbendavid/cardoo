@@ -16,7 +16,9 @@ Open `index.html` directly in a browser or serve this directory with a static se
 - `js/catalog.js` — vehicle loading, filtering, and card rendering
 - `js/hero-carousel.js` — background transitions, controls, and on-demand image loading
 - `js/legal.js` — mobile navigation for the content pages
-- `data/cars.js` — central prototype vehicle catalog, usable from `file://` and web servers
+- `data/cars.csv` — catalog editing source and column contract for future catalog updates
+- `data/cars.js` — browser-ready catalog generated from the CSV; usable from `file://` and web servers
+- `data/CSV_CONTRACT.md` — field types and CSV-to-JavaScript transformation rules
 - `assets/images/` — Cardoo logo, optimized hero carousel images, and replaceable image assets
 
 ## Prototype notes
