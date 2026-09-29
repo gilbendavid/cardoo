@@ -110,9 +110,9 @@ select:focus-visible {
 .brand {
   display: flex;
   align-items: center;
-  width: 172px;
-  height: 68px;
-  overflow: hidden;
+  width: 220px;
+  height: 74px;
+  overflow: visible;
   flex: 0 0 auto;
 }
 .brand img {
@@ -207,6 +207,7 @@ select:focus-visible {
   overflow: hidden;
   background: #171819;
   isolation: isolate;
+  scroll-margin-top: 82px;
 }
 .hero::before {
   content: "";
@@ -1350,10 +1351,12 @@ select:focus-visible {
   padding-block: 58px 51px;
 }
 .footer-brand .brand {
-  width: 150px;
-  height: 61px;
+  width: min(100%, 280px);
+  height: auto;
+  aspect-ratio: 3 / 1;
+  margin-inline-start: auto;
   margin-block-end: 5px;
-  background: white;
+  background: transparent;
 }
 .footer-brand p {
   margin: 0;
@@ -1555,8 +1558,8 @@ select:focus-visible {
     gap: 12px;
   }
   .brand {
-    width: 137px;
-    height: 59px;
+    width: 175px;
+    height: 58px;
   }
   .header-cta {
     min-height: 38px;
@@ -1621,6 +1624,7 @@ select:focus-visible {
   }
   .hero {
     min-height: clamp(640px, calc(100svh - 70px), 790px);
+    scroll-margin-top: 70px;
   }
   .hero::after {
     background: linear-gradient(
@@ -1928,8 +1932,8 @@ select:focus-visible {
     grid-column: 1 / -1;
   }
   .footer-brand .brand {
-    width: 128px;
-    height: 52px;
+    width: min(100%, 220px);
+    height: auto;
   }
   .footer-title {
     margin-block-end: 11px;
@@ -2022,7 +2026,7 @@ select:focus-visible {
     width: calc(100% - 30px);
   }
   .brand {
-    width: 119px;
+    width: 160px;
   }
   .header-cta {
     padding-inline: 10px;
