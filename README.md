@@ -14,9 +14,10 @@ Open `index.html` directly in a browser or serve this directory with a static se
 - `css/styles.css` — responsive design system and components
 - `js/app.js` — navigation, mobile drawer, and lead form behavior
 - `js/catalog.js` — vehicle loading, filtering, and card rendering
+- `js/hero-carousel.js` — background transitions, controls, and on-demand image loading
 - `js/legal.js` — mobile navigation for the content pages
 - `data/cars.js` — central prototype vehicle catalog, usable from `file://` and web servers
-- `assets/images/` — Cardoo logo and replaceable image assets
+- `assets/images/` — Cardoo logo, optimized hero carousel images, and replaceable image assets
 
 ## Prototype notes
 
