@@ -8,7 +8,7 @@
 - Follow standard CSV quoting: fields containing commas, quotes, or line breaks are quoted, and an embedded quote is doubled.
 - Use one data row per car. Preserve row order when regenerating the runtime data.
 - Header names are the exact, case-sensitive JSON keys. Do not rename, omit, or add columns without updating this contract.
-- All current fields are required. A blank text cell means an empty string; blank numeric or array cells are invalid. JSON `null` is not currently used.
+- All current columns are required. A blank text cell means an empty string; blank numeric or array cells are invalid in the canonical CSV. Use `[]` for an array with no entries. JSON `null` is not currently used.
 
 ## Columns and JSON types
 
@@ -51,4 +51,6 @@ Keep every column in each object, including fields not currently displayed by th
 
 ## Existing source note
 
-The current catalog has two rows with the same `id`, `executive-sedan` (Model 3 and Kia Niro Hybrid). This CSV preserves both values exactly. Use unique IDs for future entries, and resolve the existing duplicate explicitly before treating `id` as a unique key; do not silently change it during CSV conversion.
+The latest supplied file had two rows with the same `id`, `JAECCO-5`. This catalog preserves both IDs and rows. Use unique IDs for future entries, and resolve the duplicate explicitly before treating `id` as a unique key; do not silently change it during CSV conversion. Whitespace in scalar values, including trailing spaces, is preserved.
+
+The supplied file also had malformed `categories` array cells and blank `details` cells. During import, the missing separators between `"8/7 מקומות"` and `"מרווחת"` were repaired, and plain-text category cells such as `משפחתי חסכוני` were split into their whitespace-separated category labels. Blank `details` cells became `[]`; blank `shortDescription` and `imageAlt` cells remain empty strings. The canonical `data/cars.csv` stores every array as valid compact JSON text after these repairs.
