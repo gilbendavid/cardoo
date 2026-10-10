@@ -70,12 +70,30 @@
       const matchesQuery = !query || searchable.includes(query);
       const carCategories = [car.category, ...(car.categories || []), car.drivetrain];
       const matchesCategory = categories.length === 0 || categories.some((category) => carCategories.includes(category));
-      const matchesPayment = car.monthlyPayment >= min && car.monthlyPayment <= max;
+      const hasMonthlyPayment = Number.isFinite(car.monthlyPayment);
+      const paymentFilterIsDefault = min === Number(minInput.min) && max === Number(maxInput.max);
+      const matchesPayment = hasMonthlyPayment
+        ? car.monthlyPayment >= min && car.monthlyPayment <= max
+        : paymentFilterIsDefault;
       return matchesQuery && matchesCategory && matchesPayment;
     });
 
-    if (sortSelect.value === "price-asc") filtered.sort((a, b) => a.monthlyPayment - b.monthlyPayment);
-    if (sortSelect.value === "price-desc") filtered.sort((a, b) => b.monthlyPayment - a.monthlyPayment);
+    if (sortSelect.value === "price-asc") filtered.sort((a, b) => {
+      const aHasPrice = Number.isFinite(a.monthlyPayment);
+      const bHasPrice = Number.isFinite(b.monthlyPayment);
+      if (!aHasPrice && !bHasPrice) return 0;
+      if (!Number.isFinite(a.monthlyPayment)) return 1;
+      if (!Number.isFinite(b.monthlyPayment)) return -1;
+      return a.monthlyPayment - b.monthlyPayment;
+    });
+    if (sortSelect.value === "price-desc") filtered.sort((a, b) => {
+      const aHasPrice = Number.isFinite(a.monthlyPayment);
+      const bHasPrice = Number.isFinite(b.monthlyPayment);
+      if (!aHasPrice && !bHasPrice) return 0;
+      if (!Number.isFinite(a.monthlyPayment)) return 1;
+      if (!Number.isFinite(b.monthlyPayment)) return -1;
+      return b.monthlyPayment - a.monthlyPayment;
+    });
     return filtered;
   }
 
@@ -116,7 +134,7 @@
           <p class="car-description">${safeDescription}</p>
           <div class="car-details">${details}</div>
           <div class="car-price-row">
-            <div><span class="car-price-label">החזר חודשי משוער</span><strong class="car-price">₪${formatPrice(car.monthlyPayment)}<small>/ חודש</small></strong></div>
+            <div><span class="car-price-label">${Number.isFinite(car.monthlyPayment) ? "החזר חודשי משוער" : "מחיר חודשי"}</span><strong class="car-price">${Number.isFinite(car.monthlyPayment) ? `₪${formatPrice(car.monthlyPayment)}<small>/ חודש</small>` : "לקבלת מחיר"}</strong></div>
             <button class="car-cta" type="button" data-car-name="${safeName}" aria-label="קבלת פרטים על ${safeName}">←</button>
           </div>
         </div>

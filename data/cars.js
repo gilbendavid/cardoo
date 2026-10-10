@@ -354,5 +354,212 @@ window.CardooCars = [
       "חסכונית",
       "מרווחת"
     ]
+  },
+  {
+    "id": "OMODA",
+    "name": "OMODA 7",
+    "manufacturer": "OMODA",
+    "model": "OMODA 7",
+    "category": "HYBRID",
+    "categories": [
+      "משפחתי",
+      "היברידי",
+      "חשמלי"
+    ],
+    "image": "https://res.cloudinary.com/colmobil/images/w_2560,h_441,c_scale/f_auto,q_auto/v1764581309/Frame-1000004715@2x_2390b3ca2/Frame-1000004715@2x_2390b3ca2.png?_i=AA",
+    "imageAlt": "רכב suv  מרווח בנסיעה ",
+    "monthlyPayment": 1990,
+    "year": 2026,
+    "drivetrain": "היברדי",
+    "shortDescription": "מרווחת חכמה וחסכונית ",
+    "details": []
+  },
+  {
+    "id": "ZEEKR-X",
+    "name": "ZEEKR X",
+    "manufacturer": "ZEEKR",
+    "model": "ZEEKR",
+    "category": "חשמלי",
+    "categories": [
+      "חשמלי",
+      "משפחתי"
+    ],
+    "image": "https://www.icar.co.il/_media/images/models/bgremoval/zeekr-x-new.jpg",
+    "imageAlt": "קרוסאובר קומפקטי חשמלי ברמת פרימיום",
+    "monthlyPayment": 1931,
+    "year": 2026,
+    "drivetrain": "חשמלי",
+    "shortDescription": "קרוסאובר קומפקטי חשמלי ברמת פרימיום",
+    "details": []
+  },
+  {
+    "id": "ZEEKR-7X",
+    "name": "ZEEKR 7X",
+    "manufacturer": "ZEEKR",
+    "model": "ZEEKR",
+    "category": "חשמלי",
+    "categories": [
+      "משפחתי",
+      "פנאי שטח",
+      "חשמלי"
+    ],
+    "image": "https://www.datocms-assets.com/143776/1742098323-zeekr-7x-lifestyle30-1.png?auto=format",
+    "imageAlt": "רכב suv  מרווח בנסיעה ",
+    "monthlyPayment": 2442,
+    "year": 2026,
+    "drivetrain": "חשמלי",
+    "shortDescription": "חוויית נהיגה חשמלית ברמת פרימיום",
+    "details": []
+  },
+  {
+    "id": "ZEEKR-001",
+    "name": "ZEEKR 001",
+    "manufacturer": "ZEEKR",
+    "model": "ZEEKR",
+    "category": "חשמלי",
+    "categories": [
+      "משפחתי",
+      "ספורט",
+      "חשמלי"
+    ],
+    "image": "https://www.datocms-assets.com/143776/1753637721-zeekr_green-exterior_pc.jpg?auto=format",
+    "imageAlt": "רכב suv  מרווח בנסיעה ",
+    "monthlyPayment": 3055,
+    "year": 2026,
+    "drivetrain": "חשמלי",
+    "shortDescription": "שילוב מושלם בין עוצמה ספורטיבית מתפרצת ליוקרה מלטפת",
+    "details": []
+  },
+  {
+    "id": "KGM REXSTON",
+    "name": "KGM REXSTON",
+    "manufacturer": "KGM",
+    "model": "KGM",
+    "category": "דיזל",
+    "categories": [
+      "7 מקומות",
+      "מרווחת",
+      "SUV"
+    ],
+    "image": "https://kgm.co.il/wp-content/uploads/2023/12/52088_d_rexton_site_pics_820x378_5.png",
+    "imageAlt": "רכב suv  מרווח בנסיעה ",
+    "monthlyPayment": 2729,
+    "year": 2026,
+    "drivetrain": "דיזל",
+    "shortDescription": "משפחתי מרווח ",
+    "details": []
+  },
+  {
+    "id": "MUSSO ",
+    "name": "MUSSO",
+    "manufacturer": "KGM",
+    "model": "KGM",
+    "category": "דיזל",
+    "categories": [
+      "דיזל",
+      "Pick-up",
+      "שטח"
+    ],
+    "image": "https://kgm.co.il/wp-content/uploads/2023/07/680x360_colors_0003_31_Long_SANDSTONE-BEIGE_005.png",
+    "imageAlt": "",
+    "monthlyPayment": null,
+    "year": 2026,
+    "drivetrain": "דיזל",
+    "shortDescription": "",
+    "details": []
+  },
+  {
+    "id": "XPENG G9",
+    "name": "XPENG G9",
+    "manufacturer": "XPENG",
+    "model": "XPENG",
+    "category": "חשמלי",
+    "categories": [
+      "משפחתי",
+      "ספורט",
+      "חשמלי"
+    ],
+    "image": "https://heyxpeng.co.il/wp-content/uploads/2026/02/xpeng-g9-full-block-img-04-d.jpg.webp",
+    "imageAlt": "",
+    "monthlyPayment": 3190,
+    "year": 2026,
+    "drivetrain": "חשמלי",
+    "shortDescription": "עיצוב יקורתי מרווח מאוד",
+    "details": []
+  },
+  {
+    "id": "XPENG P7+",
+    "name": "XPENG P7+",
+    "manufacturer": "XPENG",
+    "model": "XPENG",
+    "category": "חשמלי",
+    "categories": [
+      "משפחתי",
+      "ספורט",
+      "חשמלי"
+    ],
+    "image": "https://heyxpeng.co.il/wp-content/uploads/2026/06/xpeng-p7-plus-img-02-d.jpg.webp",
+    "imageAlt": "",
+    "monthlyPayment": 2090,
+    "year": 2026,
+    "drivetrain": "חשמלי",
+    "shortDescription": "אבזור עשיר עיצוב ספורטבי",
+    "details": []
+  },
+  {
+    "id": "XPENG G6",
+    "name": "XPENG G6",
+    "manufacturer": "XPENG",
+    "model": "XPENG",
+    "category": "חשמלי",
+    "categories": [
+      "משפחתי",
+      "פנאי שטח",
+      "חשמלי"
+    ],
+    "image": "https://heyxpeng.co.il/wp-content/uploads/2025/11/xpeng-g6-design-img-d.jpg.webp",
+    "imageAlt": "",
+    "monthlyPayment": 2120,
+    "year": 2026,
+    "drivetrain": "חשמלי",
+    "shortDescription": "",
+    "details": []
+  },
+  {
+    "id": "MAZDA  CX5",
+    "name": "MAZDA  CX5",
+    "manufacturer": "MAZDA",
+    "model": "MAZDA",
+    "category": "בנזין",
+    "categories": [
+      "מרווחת",
+      "SUV",
+      "משפחתי"
+    ],
+    "image": "https://www.usnews.com/object/image/0000019c-7c39-d2c8-a3bf-ff7f71bb0000/usnpx-26mazdacx5-jmv-1641.jpg?update-time=1771610665161&size=responsive640&format=webp",
+    "imageAlt": "קרסאובר קומפקטי suv",
+    "monthlyPayment": 2015,
+    "year": 2026,
+    "drivetrain": "בנזין",
+    "shortDescription": "קראוסבר קומפקטי suv",
+    "details": []
+  },
+  {
+    "id": "ORA 5 SUV",
+    "name": "ORA 5 SUV",
+    "manufacturer": "ORA",
+    "model": "ORA",
+    "category": "HYBRID",
+    "categories": [
+      "מיני",
+      "חשמלי"
+    ],
+    "image": "https://res.cloudinary.com/colmobil/images/f_auto,q_auto/v1781008359/green_79518714bd/green_79518714bd.png?_i=AA",
+    "imageAlt": "קרסאובר קומפקטי חשמלי",
+    "monthlyPayment": 1583,
+    "year": 2026,
+    "drivetrain": "חשמלי",
+    "shortDescription": "קראוסאובר קופקטי חשמלי",
+    "details": []
   }
 ];

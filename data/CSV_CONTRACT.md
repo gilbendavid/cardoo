@@ -22,7 +22,7 @@
 | `categories` | array of strings | Parse the cell as a JSON array |
 | `image` | string | Copy text as-is |
 | `imageAlt` | string | Copy text as-is |
-| `monthlyPayment` | integer | Parse a base-10 integer; do not include currency signs or thousands separators |
+| `monthlyPayment` | integer or blank | Parse a nonblank value as a base-10 integer; blank means the price is unavailable and maps to JSON `null`. Do not include currency signs or thousands separators |
 | `year` | integer | Parse a base-10 integer |
 | `drivetrain` | string | Copy text as-is |
 | `shortDescription` | string | Copy text as-is |
@@ -37,7 +37,7 @@ Array cells use compact JSON text. The CSV parser returns the logical cell text 
 
 ## CSV to website data
 
-For each CSV record, create one object with the header names as keys. Copy string cells unchanged, parse `monthlyPayment` and `year` as integers, and JSON-parse `categories` and `details` as arrays of strings. Preserve Hebrew text, punctuation, URLs, array order, and row order. Do not infer values or silently drop empty cells.
+For each CSV record, create one object with the header names as keys. Copy string cells unchanged, parse nonblank `monthlyPayment` and `year` as integers, map blank `monthlyPayment` to JSON `null`, and JSON-parse `categories` and `details` as arrays of strings. A blank `details` cell maps to `[]`; other string fields, including blanks, remain unchanged. Preserve Hebrew text, punctuation, URLs, array order, and row order. Do not infer values or silently drop empty cells.
 
 Serialize the resulting objects as a JSON array and write it into `data/cars.js` in the current runtime form:
 
