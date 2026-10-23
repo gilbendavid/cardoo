@@ -466,7 +466,7 @@
             <div class="contact-watermark" aria-hidden="true">CARDOO</div>
           </div>
           <div class="contact-form-card">
-            <div class="form-card-heading">
+            <div class="form-card-heading" id="form-card-heading">
               <p>מתחילים בדרך חדשה</p>
             </div>
             <form id="lead-form" novalidate>
@@ -545,6 +545,22 @@
                 aria-live="polite"
               ></p>
             </form>
+            <div
+              class="form-success"
+              id="lead-success"
+              role="status"
+              aria-live="polite"
+              tabindex="-1"
+              hidden
+            >
+              <span class="form-success-icon" aria-hidden="true">
+                <svg viewBox="0 0 48 48" focusable="false">
+                  <path d="m13 24 7 7 15-16" />
+                </svg>
+              </span>
+              <h3>הפרטים נשלחו בהצלחה!</h3>
+              <p>קיבלנו את פנייתכם ונחזור אליכם בהקדם.</p>
+            </div>
           </div>
         </div>
       </section>

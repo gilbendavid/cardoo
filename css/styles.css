@@ -1401,6 +1401,51 @@ select:focus-visible {
 .form-message.is-error {
   color: #c51420;
 }
+.form-success {
+  min-height: 385px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 12px;
+  text-align: center;
+}
+.form-success[hidden] {
+  display: none;
+}
+.form-success-icon {
+  width: 82px;
+  height: 82px;
+  display: grid;
+  place-items: center;
+  margin-block-end: 22px;
+  border: 2px solid #18804d;
+  border-radius: 50%;
+  background: #edf8f1;
+  color: #18804d;
+}
+.form-success-icon svg {
+  width: 46px;
+  height: 46px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 4;
+}
+.form-success h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(23px, 3vw, 30px);
+  font-weight: 800;
+  line-height: 1.35;
+}
+.form-success p {
+  margin: 12px 0 0;
+  color: #666a6b;
+  font-size: 16px;
+  line-height: 1.7;
+}
 .form-privacy-note {
   display: flex;
   align-items: center;

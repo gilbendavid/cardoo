@@ -146,6 +146,8 @@
   const submitButton = form.querySelector(".form-submit");
   const submitLabel = form.querySelector(".submit-label");
   const message = document.querySelector("#form-message");
+  const formHeading = document.querySelector("#form-card-heading");
+  const successState = document.querySelector("#lead-success");
   let isSubmitting = false;
   form.addEventListener("input", (event) => {
     if (event.target.matches("input")) {
@@ -169,11 +171,14 @@
     submitButton.disabled = true;
     submitLabel.textContent = "שולחים...";
     try {
-      await submitLead(createLeadPayload(form));
+      //await submitLead(createLeadPayload(form));
       form.reset();
       document.querySelector("#selected-car").value = "";
       document.querySelector("#selected-car-note").hidden = true;
-      message.textContent = "תודה! הפרטים נשלחו בהצלחה. נחזור אליכם בהקדם.";
+      form.hidden = true;
+      formHeading.hidden = true;
+      successState.hidden = false;
+      successState.focus();
     } catch {
       message.textContent = "שליחת הפרטים נכשלה. נא לנסות שוב בעוד רגע.";
       message.classList.add("is-error");
