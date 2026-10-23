@@ -10,6 +10,27 @@
   const backdrop = document.querySelector(".drawer-backdrop");
   const contactSection = document.querySelector("#contact");
   const stickyCta = document.querySelector(".mobile-sticky-cta");
+  const promoDialog = document.querySelector("#promo-popup");
+  const promoClose = promoDialog.querySelector(".promo-popup-close");
+  const promoCta = promoDialog.querySelector(".promo-popup-cta");
+  const contactTitle = document.querySelector("#contact-title");
+
+  window.setTimeout(() => promoDialog.showModal(), 10_000);
+
+  promoClose.addEventListener("click", () => promoDialog.close());
+  promoDialog.addEventListener("click", (event) => {
+    if (event.target === promoDialog) promoDialog.close();
+  });
+  promoCta.addEventListener("click", () => {
+    promoDialog.close();
+    contactTitle.focus({ preventScroll: true });
+    contactTitle.scrollIntoView({
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth",
+      block: "start",
+    });
+  });
 
   function setMenu(open) {
     menuToggle.setAttribute("aria-expanded", String(open));
@@ -58,9 +79,7 @@
     selectedCar.value = carButton.dataset.carName;
     selectedCarNote.textContent = `מתעניינים ב־${carButton.dataset.carName}`;
     selectedCarNote.hidden = false;
-    document
-      .querySelector("#contact-title")
-      .scrollIntoView({ behavior: "smooth", block: "start" });
+    contactTitle.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 
   if ("IntersectionObserver" in window) {
@@ -146,6 +165,8 @@
   const submitButton = form.querySelector(".form-submit");
   const submitLabel = form.querySelector(".submit-label");
   const message = document.querySelector("#form-message");
+  const formHeading = document.querySelector("#form-card-heading");
+  const successState = document.querySelector("#lead-success");
   let isSubmitting = false;
   form.addEventListener("input", (event) => {
     if (event.target.matches("input")) {
@@ -173,7 +194,10 @@
       form.reset();
       document.querySelector("#selected-car").value = "";
       document.querySelector("#selected-car-note").hidden = true;
-      message.textContent = "תודה! הפרטים נשלחו בהצלחה. נחזור אליכם בהקדם.";
+      form.hidden = true;
+      formHeading.hidden = true;
+      successState.hidden = false;
+      successState.focus();
     } catch {
       message.textContent = "שליחת הפרטים נכשלה. נא לנסות שוב בעוד רגע.";
       message.classList.add("is-error");

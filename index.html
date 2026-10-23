@@ -459,14 +459,14 @@
             <p class="eyebrow">
               <span class="eyebrow-line"></span> הרכב הבא מתחיל בשיחה
             </p>
-            <h2 id="contact-title">
+            <h2 id="contact-title" tabindex="-1">
               נמצא יחד את<br /><span>הדרך הנכונה</span>
             </h2>
             <p class="contact-intro">השאירו פרטים ונחזור אליכם לשיחה אישית.</p>
             <div class="contact-watermark" aria-hidden="true">CARDOO</div>
           </div>
           <div class="contact-form-card">
-            <div class="form-card-heading">
+            <div class="form-card-heading" id="form-card-heading">
               <p>מתחילים בדרך חדשה</p>
             </div>
             <form id="lead-form" novalidate>
@@ -545,6 +545,22 @@
                 aria-live="polite"
               ></p>
             </form>
+            <div
+              class="form-success"
+              id="lead-success"
+              role="status"
+              aria-live="polite"
+              tabindex="-1"
+              hidden
+            >
+              <span class="form-success-icon" aria-hidden="true">
+                <svg viewBox="0 0 48 48" focusable="false">
+                  <path d="m13 24 7 7 15-16" />
+                </svg>
+              </span>
+              <h3>הפרטים נשלחו בהצלחה!</h3>
+              <p>קיבלנו את פנייתכם ונחזור אליכם בהקדם.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -596,6 +612,37 @@
       aria-label="השאירו פרטים ליצירת קשר"
       >השאירו פרטים <span aria-hidden="true">←</span></a
     >
+    <dialog
+      class="promo-dialog"
+      id="promo-popup"
+      dir="rtl"
+      lang="he"
+      aria-labelledby="promo-popup-title"
+    >
+      <div class="promo-popup-card">
+        <button
+          class="promo-popup-close"
+          type="button"
+          aria-label="סגירת חלונית"
+          autofocus
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+        <img
+          class="promo-popup-image"
+          src="assets/images/cardoo-contact-popup.jpeg"
+          alt="מגוון רכבים חדשים מהמותגים המובילים, בהחזר חודשי משתלם"
+        />
+        <div class="promo-popup-actions">
+          <h2 class="sr-only" id="promo-popup-title">
+            בואו נמצא יחד את הרכב הבא שלכם
+          </h2>
+          <button class="button button-primary promo-popup-cta" type="button">
+            השאירו פרטים <span aria-hidden="true">←</span>
+          </button>
+        </div>
+      </div>
+    </dialog>
     <div class="drawer-backdrop" hidden></div>
   </body>
 </html>
