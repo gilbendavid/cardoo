@@ -171,7 +171,7 @@
     submitButton.disabled = true;
     submitLabel.textContent = "שולחים...";
     try {
-      //await submitLead(createLeadPayload(form));
+      await submitLead(createLeadPayload(form));
       form.reset();
       document.querySelector("#selected-car").value = "";
       document.querySelector("#selected-car-note").hidden = true;
