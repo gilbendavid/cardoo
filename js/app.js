@@ -1,4 +1,7 @@
 (() => {
+  // Add the backend URL here when it is available.
+  const LEAD_API_URL =
+    "https://ben-david-automation.app.n8n.cloud/webhook/cardoo-lead";
   const menuToggle = document.querySelector(".menu-toggle");
   const nav = document.querySelector("#primary-nav");
   const filters = document.querySelector("#catalog-filters");
@@ -29,8 +32,12 @@
     }
   }
 
-  menuToggle.addEventListener("click", () => setMenu(menuToggle.getAttribute("aria-expanded") !== "true"));
-  nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setMenu(false)));
+  menuToggle.addEventListener("click", () =>
+    setMenu(menuToggle.getAttribute("aria-expanded") !== "true"),
+  );
+  nav
+    .querySelectorAll("a")
+    .forEach((link) => link.addEventListener("click", () => setMenu(false)));
   filterOpen.addEventListener("click", () => setFilterDrawer(true));
   filterClose.addEventListener("click", () => setFilterDrawer(false));
   backdrop.addEventListener("click", () => {
@@ -51,20 +58,34 @@
     selectedCar.value = carButton.dataset.carName;
     selectedCarNote.textContent = `מתעניינים ב־${carButton.dataset.carName}`;
     selectedCarNote.hidden = false;
-    document.querySelector("#contact-title").scrollIntoView({ behavior: "smooth", block: "start" });
+    document
+      .querySelector("#contact-title")
+      .scrollIntoView({ behavior: "smooth", block: "start" });
   });
 
   if ("IntersectionObserver" in window) {
-    const observer = new IntersectionObserver(([entry]) => {
-      stickyCta.classList.toggle("is-visible", !entry.isIntersecting && window.scrollY > 500);
-    }, { threshold: 0.12 });
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        stickyCta.classList.toggle(
+          "is-visible",
+          !entry.isIntersecting && window.scrollY > 500,
+        );
+      },
+      { threshold: 0.12 },
+    );
     observer.observe(contactSection);
-    window.addEventListener("scroll", () => {
-      if (window.scrollY <= 500) stickyCta.classList.remove("is-visible");
-    }, { passive: true });
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (window.scrollY <= 500) stickyCta.classList.remove("is-visible");
+      },
+      { passive: true },
+    );
   }
 
-  document.querySelector("#current-year").textContent = String(new Date().getFullYear());
+  document.querySelector("#current-year").textContent = String(
+    new Date().getFullYear(),
+  );
 
   function validateLead(form) {
     const name = form.elements.name;
@@ -74,16 +95,24 @@
     const normalizedPhone = phone.value.replace(/\D/g, "").replace(/^972/, "0");
     const errors = {
       name: name.value.trim().length < 2 ? "נא להזין שם מלא." : "",
-      phone: !/^0\d{8,9}$/.test(normalizedPhone) ? "נא להזין מספר טלפון תקין." : "",
-      email: email.value.trim() && !email.validity.valid ? "נא להזין כתובת אימייל תקינה." : "",
-      consent: !consent.checked ? "כדי שנוכל לחזור אליכם, יש לאשר יצירת קשר." : ""
+      phone: !/^0\d{8,9}$/.test(normalizedPhone)
+        ? "נא להזין מספר טלפון תקין."
+        : "",
+      email:
+        email.value.trim() && !email.validity.valid
+          ? "נא להזין כתובת אימייל תקינה."
+          : "",
+      consent: !consent.checked
+        ? "כדי שנוכל לחזור אליכם, יש לאשר יצירת קשר."
+        : "",
     };
 
     Object.entries(errors).forEach(([field, message]) => {
       const control = form.elements[field];
       const errorNode = document.querySelector(`#${field}-error`);
       if (errorNode) errorNode.textContent = message;
-      if (control.type !== "checkbox") control.setAttribute("aria-invalid", String(Boolean(message)));
+      if (control.type !== "checkbox")
+        control.setAttribute("aria-invalid", String(Boolean(message)));
       else control.setAttribute("aria-invalid", String(Boolean(message)));
     });
     const firstInvalid = form.querySelector('[aria-invalid="true"]');
@@ -91,15 +120,33 @@
     return !firstInvalid;
   }
 
+  function createLeadPayload(form) {
+    return {
+      name: form.elements.name.value.trim(),
+      phone: form.elements.phone.value.trim(),
+      email: form.elements.email.value.trim() || null,
+      consent: form.elements.consent.checked,
+      selectedCar: form.elements.selectedCar.value.trim() || null,
+    };
+  }
+
   async function submitLead(payload) {
-    // Replace this mock with fetch('/api/leads', { method: 'POST', ... }) when a backend is ready.
-    await new Promise((resolve) => window.setTimeout(resolve, 850));
-    return { ok: true, received: Boolean(payload.name && payload.phone) };
+    if (!LEAD_API_URL) throw new Error("lead-endpoint-not-configured");
+
+    const response = await fetch(LEAD_API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    if (response.status !== 200) throw new Error("lead-submit-failed");
   }
 
   const form = document.querySelector("#lead-form");
   const submitButton = form.querySelector(".form-submit");
+  const submitLabel = form.querySelector(".submit-label");
   const message = document.querySelector("#form-message");
+  let isSubmitting = false;
   form.addEventListener("input", (event) => {
     if (event.target.matches("input")) {
       event.target.removeAttribute("aria-invalid");
@@ -111,28 +158,31 @@
   });
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
+    if (isSubmitting) return;
     message.textContent = "";
     message.classList.remove("is-error");
     if (!validateLead(form)) return;
 
+    isSubmitting = true;
     submitButton.classList.add("is-loading");
     submitButton.setAttribute("aria-busy", "true");
     submitButton.disabled = true;
+    submitLabel.textContent = "שולחים...";
     try {
-      const formData = new FormData(form);
-      const result = await submitLead(Object.fromEntries(formData.entries()));
-      if (!result.ok) throw new Error("lead-submit-failed");
+      await submitLead(createLeadPayload(form));
       form.reset();
       document.querySelector("#selected-car").value = "";
       document.querySelector("#selected-car-note").hidden = true;
-      message.textContent = "תודה! קיבלנו את הפרטים ונחזור אליכם בהקדם.";
+      message.textContent = "תודה! הפרטים נשלחו בהצלחה. נחזור אליכם בהקדם.";
     } catch {
-      message.textContent = "משהו השתבש בשליחת הטופס. נסו שוב בעוד רגע.";
+      message.textContent = "שליחת הפרטים נכשלה. נא לנסות שוב בעוד רגע.";
       message.classList.add("is-error");
     } finally {
+      isSubmitting = false;
       submitButton.classList.remove("is-loading");
       submitButton.removeAttribute("aria-busy");
       submitButton.disabled = false;
+      submitLabel.textContent = "שליחה";
     }
   });
 })();
